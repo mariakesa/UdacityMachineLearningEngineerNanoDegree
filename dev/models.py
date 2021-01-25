@@ -469,6 +469,7 @@ class DQN(pl.LightningModule):
         """
         total_rewards = []
         self.im_arr=[]
+        self.actions_record=[]
         for _ in range(n_epsiodes):
             episode_state = env.reset()
             done = False
@@ -482,6 +483,7 @@ class DQN(pl.LightningModule):
                 #plt.imshow(episode_state[0,:,:])
                 #plt.show()
                 self.im_arr.append(np.mean(episode_state,axis=0).flatten())
+                self.actions_record.append(action)
                 next_state, reward, done, _ = env.step(action[0])
                 episode_state = next_state
                 episode_reward += reward
