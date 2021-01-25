@@ -1,6 +1,7 @@
 from EnsemblePursuit.EnsemblePursuit import EnsemblePursuit
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
 
 def compute_rfield(imgs,V):
     imgs=imgs.T
@@ -14,6 +15,11 @@ def fit_ep(ts,n_ensembles=100,lam=0.1):
     ep=EnsemblePursuit(n_components=n_ensembles,n_kmeans=n_ensembles,lam=0.1)
     ep.fit(activations)
     return ep.components_, ep.weights
+
+def fit_pca(ts,n_components=100):
+    pca=PCA(n_components=n_components)
+    V=pca.fit_transform(ts.T)
+    return V
 
 def plot_receptive_fields(V,U,imgs):
     rf_weights=compute_rfield(imgs,V)
