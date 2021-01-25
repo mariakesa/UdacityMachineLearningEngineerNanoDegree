@@ -22,3 +22,10 @@ def plot_receptive_fields(V,U,imgs):
         plt.imshow(rf_weights[:,:,j],cmap='bwr')
         plt.title('Ensemble '+str(j)+', n_neurons='+str(n_neurons))
         plt.show()
+
+def plot_behavior_receptive_fields(action_one_hot_arr,imgs):
+    rf_weights=compute_rfield(imgs,action_one_hot_arr)
+    for j in range(0,action_one_hot_arr.shape[1]):
+        plt.imshow(rf_weights[:,:,j],cmap='bwr')
+        plt.title('Action rf, action: '+str(j))
+        plt.show()

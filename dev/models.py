@@ -483,7 +483,7 @@ class DQN(pl.LightningModule):
                 #plt.imshow(episode_state[0,:,:])
                 #plt.show()
                 self.im_arr.append(np.mean(episode_state,axis=0).flatten())
-                self.actions_record.append(action)
+                self.actions_record.append(action[0])
                 next_state, reward, done, _ = env.step(action[0])
                 episode_state = next_state
                 episode_reward += reward
