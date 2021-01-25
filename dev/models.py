@@ -422,7 +422,7 @@ class DQN(pl.LightningModule):
         self.target_net = None
         self.build_networks()
 
-        self.agent = ValueAgent_(
+        self.agent = ValueAgent(
             self.net,
             self.n_actions,
             eps_start=eps_start,
